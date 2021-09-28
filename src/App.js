@@ -1,25 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './cssFiles/App.css';
 
-function App() {
+/*Context*/
+import UserContext from './UserContext';
+
+
+import Header from './components/Header';
+import Home from './pages/Home';
+import NotFound from './components/NotFound';
+// import Checkout from "./components/Checkout";
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Products from './pages/Products';
+
+export default function App() {
+      const [user, setUser] = useState(
+        {
+          id: null,
+          isAdmin: null
+        }
+    );
+
+    const unsetUser = () => {
+        localStorage.clear();
+        setUser({    //check this
+          id: null,
+          isAdmin: null
+        })
+    }
+
+    useEffect( ()=> {
+        let token = localStorage.getItem('token');
+        fetch('https://shrouded-brook-21767.herokuapp.com/api/users/details',{
+          method: "GET",
+          headers: {
+              "Authorization": `Bearer ${token}`
+          }
+        })
+        .then(result => result.json())
+        .then(result =>{
+          // console.log(result)
+
+          if(typeof result._id !== "undefined"){
+              setUser({
+                id: result._id,
+                isAdmin:result.isAdmin
+              })
+          } else{
+              setUser({
+                id:null,
+                isAdmin:null
+              })
+          }
+        })
+    })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //BEM
+    <UserContext.Provider value={{user,setUser,unsetUser}}>
+      <BrowserRouter>
+         <Header/>
+         <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/products" component={Products} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route component={NotFound} />
+         </Switch>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
-
-export default App;

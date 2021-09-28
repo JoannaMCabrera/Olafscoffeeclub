@@ -1,0 +1,17 @@
+.checkout{
+    display: flex;
+    padding: 20px;
+    background-color:#fff5ee;
+    height: max-content;
+}
+
+.checkout__orders > voucher{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.checkout__orders{
+    margin-right: 10px;
+    padding: 10px;
+    border-bottom: 1px solid lightgray
+}
