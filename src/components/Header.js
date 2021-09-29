@@ -34,8 +34,8 @@ function Header() {
   
     return (
       
-      <div className="row">
-          <div className="col-12">
+      // <div className="row w-100">
+      //     <div className="col-12 p-0">
         <Navbar className="navbar d-flex" bg="dark" variant="dark" expand="lg">
           <img className="navbar__logo" src ={logo} alt="logo" />
           <Navbar.Brand as={Link} to="/" className="navbar__brand">
@@ -72,8 +72,8 @@ function Header() {
                 
             </Navbar.Collapse>
         </Navbar>
-        </div>
-        </div>
+        // </div>
+        // </div>
     )
 }
     

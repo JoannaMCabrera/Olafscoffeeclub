@@ -74,7 +74,7 @@ export default function Login(){
 	
 	return(
 		(user.id !== null)?
-		 	<Redirect to="/" />
+		 	<Redirect to="/products" />
 		:
 			<Container className="mb-5">
 				<h1 className="text-center">Login</h1>

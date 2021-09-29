@@ -10,7 +10,7 @@ export default function AdminView(props){
 	// console.log(props)
 
 	const { productsData, allProductsData } = props;
-	// console.log(productsData) 
+	console.log(productsData) 
 
 	const [productId, setProductId] = useState('');
 	const [products, setProducts] = useState([]);
@@ -71,26 +71,25 @@ export default function AdminView(props){
 						}
 					</td>
 					<td>
-						<Fragment>
-							<Button variant="primary" size="sm" 
+						<>
+							<Button variant="outline-secondary" size="sm" 
 							onClick={ ()=> openEdit(product._id) }>
 								Update
 							</Button>
-							<Button variant="danger" size="sm"
+							<Button variant="outline-dark" size="sm"
 							onClick={ () => deleteToggle(product._id)}>
 								Delete
 							</Button>
-						</Fragment>
-
+						</>
 						{
 							(product.isActive === true) ?
-								<Button variant="warning" size="sm"
+								<Button variant="outline-secondary" size="sm"
 								onClick={()=> archiveToggle(product._id, product.isActive)}>
 									Disable
 								</Button>
 							:
 								
-								<Button variant="success" size="sm"
+								<Button variant="outline-secondary" size="sm"
 								onClick={ () => unarchiveToggle(product._id, product.isActive)}>
 									Enable
 								</Button>
@@ -296,7 +295,7 @@ export default function AdminView(props){
 			<div>
 				<h2 className="text-center">Admin Dashboard</h2>
 				<div className="d-flex justify-content-end mb-2">
-					<Button variant="primary" onClick={openAdd}>Add New Product</Button>
+					<Button variant="outline-secondary" onClick={openAdd}>Add New Product</Button>
 				</div>
 			</div>
 			<Table>
@@ -382,8 +381,8 @@ export default function AdminView(props){
 					</Form.Group>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={closeAdd}>Close</Button>
-					<Button variant="success" type="submit">Submit</Button>
+					<Button variant="outline-secondary" onClick={closeAdd}>Close</Button>
+					<Button variant="outline-secondary" type="submit">Submit</Button>
 				</Modal.Footer>
 			</Form>
 		</Modal>

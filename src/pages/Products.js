@@ -4,7 +4,6 @@ import React, {useState, useEffect, useContext} from 'react';
 import {Container} from 'react-bootstrap'
 
 /*components*/
-// import Course from './../components/Course';
 import AdminView from './../components/AdminView.js';
 import UserView from './../components/UserView.js';
 

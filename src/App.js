@@ -9,7 +9,7 @@ import UserContext from './UserContext';
 import Header from './components/Header';
 import Home from './pages/Home';
 import NotFound from './components/NotFound';
-// import Checkout from "./components/Checkout";
+import Checkout from "./components/Checkout";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
@@ -30,8 +30,10 @@ export default function App() {
         })
     }
 
+    let token = localStorage.getItem('token');
+    
     useEffect( ()=> {
-        let token = localStorage.getItem('token');
+        
         fetch('https://shrouded-brook-21767.herokuapp.com/api/users/details',{
           method: "GET",
           headers: {
@@ -54,7 +56,7 @@ export default function App() {
               })
           }
         })
-    })
+    }, [token]);
 
 
   return (
@@ -67,6 +69,7 @@ export default function App() {
             <Route exact path="/products" component={Products} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/checkout" component={Checkout} />
             <Route component={NotFound} />
          </Switch>
       </BrowserRouter>
